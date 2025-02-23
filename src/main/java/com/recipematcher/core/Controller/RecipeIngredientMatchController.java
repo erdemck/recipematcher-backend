@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 import com.recipematcher.core.Model.Recipe;
 import com.recipematcher.core.Service.RecipeIngredientMatchService;
-import com.recipematcher.core.Model.Ingredient;
+import com.recipematcher.core.dto.RecipeMatchResponseDTO;
 
 @RestController
 @RequestMapping("recipeingredientmatch")
@@ -21,7 +21,7 @@ public class RecipeIngredientMatchController {
     }
 
     @GetMapping
-    public List<Recipe> getMatchedRecipes(@RequestBody List<Ingredient> ingredients){
-        return recipeIngredientMatchService.getMatchedRecipes(ingredients);
+    public List<Recipe> getMatchedRecipes(@RequestBody RecipeMatchResponseDTO recipeMatchResponseDTO){
+        return recipeIngredientMatchService.getMatchedRecipes(recipeMatchResponseDTO);
     }
 }

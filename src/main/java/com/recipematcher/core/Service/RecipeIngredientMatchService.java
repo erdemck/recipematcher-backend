@@ -4,6 +4,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.ArrayList;
 import com.recipematcher.core.Model.Recipe;
+import com.recipematcher.core.dto.RecipeMatchResponseDTO;
 import com.recipematcher.core.Model.Ingredient;
 import java.util.Set;
 import java.util.HashSet;
@@ -16,19 +17,19 @@ public class RecipeIngredientMatchService {
         this.recipeService = recipeService;
     }
 
-    public List<Recipe> getMatchedRecipes(List<Ingredient> ingredients){
+    public List<Recipe> getMatchedRecipes(RecipeMatchResponseDTO recipeMatchResponseDTO){
         List<Recipe> allRecipes = recipeService.getAllRecipes();
         List<Recipe> matchedRecipes = new ArrayList<>();
 
         for(Recipe recipe : allRecipes){
-            if(isRecipeMatch(recipe, ingredients)){
+            if(isRecipeMatch(recipe, recipeMatchResponseDTO.getIngredientIds())){
                 matchedRecipes.add(recipe);
             }
         }
         return matchedRecipes;
     }
-    private boolean isRecipeMatch(Recipe recipe, List<Ingredient> ingredients){
-        Set<Long> userIngredientsSet = new HashSet<>(ingredients.stream().map(Ingredient::getId).collect(Collectors.toList()));
+    private boolean isRecipeMatch(Recipe recipe, List<Long> ingredientIds){
+        Set<Long> userIngredientsSet = new HashSet<>(ingredientIds);
         return userIngredientsSet.containsAll(recipe.getRecipeIngredients().stream().map(Ingredient::getId).collect(Collectors.toList()));
     }
 
