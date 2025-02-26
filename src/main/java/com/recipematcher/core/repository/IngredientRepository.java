@@ -10,9 +10,9 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface IngredientRepository extends JpaRepository<Ingredient, Long> {
-    // Temel CRUD operasyonları JpaRepository tarafından sağlanır
+    //Basic CRUD operations are provided by JpaRepository
     
-    // Özel sorgular:
+    // Custom Queries:
     public List<Ingredient> findByName(String name);
     public List<Ingredient> findByType(IngredientType type);
 } 

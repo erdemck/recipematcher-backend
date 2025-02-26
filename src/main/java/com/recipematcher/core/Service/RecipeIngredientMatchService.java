@@ -18,19 +18,7 @@ public class RecipeIngredientMatchService {
     }
 
     public List<Recipe> getMatchedRecipes(RecipeMatchResponseDTO recipeMatchResponseDTO){
-        List<Recipe> allRecipes = recipeService.getAllRecipes();
-        List<Recipe> matchedRecipes = new ArrayList<>();
-
-        for(Recipe recipe : allRecipes){
-            if(isRecipeMatch(recipe, recipeMatchResponseDTO.getIngredientIds())){
-                matchedRecipes.add(recipe);
-            }
-        }
-        return matchedRecipes;
-    }
-    private boolean isRecipeMatch(Recipe recipe, List<Long> ingredientIds){
-        Set<Long> userIngredientsSet = new HashSet<>(ingredientIds);
-        return userIngredientsSet.containsAll(recipe.getRecipeIngredients().stream().map(Ingredient::getId).collect(Collectors.toList()));
+        return recipeService.findRecipesByAllIngredients(recipeMatchResponseDTO.getIngredientIds());
     }
 
 }

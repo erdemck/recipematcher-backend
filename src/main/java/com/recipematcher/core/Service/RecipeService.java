@@ -23,6 +23,10 @@ public class RecipeService {
             .orElseThrow(() -> new RuntimeException("Recipe not found"));
     }
 
+    public List<Recipe> findRecipesByAllIngredients(List<Long> ingredientIds) {
+        return recipeRepository.findRecipesByAllIngredientsPresent(ingredientIds);
+    }
+
     public Recipe createRecipe(Recipe recipe) {
         return recipeRepository.save(recipe);
     }

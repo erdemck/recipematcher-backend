@@ -2,10 +2,7 @@ package com.recipematcher.core.Controller;
 
 import java.util.List;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.*;
 
 import com.recipematcher.core.Model.Recipe;
 import com.recipematcher.core.Service.RecipeIngredientMatchService;
@@ -20,7 +17,7 @@ public class RecipeIngredientMatchController {
         this.recipeIngredientMatchService = recipeIngredientMatchService;
     }
 
-    @GetMapping
+    @PostMapping
     public List<Recipe> getMatchedRecipes(@RequestBody RecipeMatchResponseDTO recipeMatchResponseDTO){
         return recipeIngredientMatchService.getMatchedRecipes(recipeMatchResponseDTO);
     }
