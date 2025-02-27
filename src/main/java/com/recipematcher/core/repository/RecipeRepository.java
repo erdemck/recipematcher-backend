@@ -14,8 +14,8 @@ public interface RecipeRepository extends JpaRepository<Recipe, Long> {
     //Basic CRUD operations are provided by JpaRepository
 
     // Custom Queryies:
-    public List<Recipe> findByRecipeName(String recipeName);
-    public List<Recipe> findByRecipeIngredientsContaining(Ingredient ingredient);
+    List<Recipe> findByRecipeName(String recipeName);
+    List<Recipe> findByRecipeIngredientsContaining(Ingredient ingredient);
 
     @Query("""
     SELECT r FROM Recipe r 

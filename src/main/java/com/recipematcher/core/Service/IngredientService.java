@@ -34,6 +34,10 @@ public class IngredientService {
     public void deleteIngredient(Long id) {
         ingredientRepository.deleteById(id);
     }
+
+    public List<Ingredient> findAllById(List<Long> ids) {
+        return ingredientRepository.findAllById(ids);
+    }
     
     
 }

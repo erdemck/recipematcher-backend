@@ -11,8 +11,8 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface IngredientRepository extends JpaRepository<Ingredient, Long> {
     //Basic CRUD operations are provided by JpaRepository
-    
-    // Custom Queries:
-    public List<Ingredient> findByName(String name);
-    public List<Ingredient> findByType(IngredientType type);
+
+    List<Ingredient> findAllById(Iterable<Long> ids);
+    List<Ingredient> findByName(String name);
+    List<Ingredient> findByType(IngredientType type);
 } 

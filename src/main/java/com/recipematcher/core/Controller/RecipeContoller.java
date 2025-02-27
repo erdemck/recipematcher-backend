@@ -1,5 +1,6 @@
 package com.recipematcher.core.Controller;
 
+import com.recipematcher.core.dto.CreateRecipeDTO;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -26,8 +27,8 @@ public class RecipeContoller {
     }
 
     @PostMapping
-    public Recipe createRecipe(@RequestBody Recipe recipe){
-        return recipeService.createRecipe(recipe);
+    public Recipe createRecipe(@RequestBody CreateRecipeDTO createRecipe){
+        return recipeService.createRecipe(createRecipe);
     }
     
 }
