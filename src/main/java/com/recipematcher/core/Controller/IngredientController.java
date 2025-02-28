@@ -2,14 +2,10 @@ package com.recipematcher.core.Controller;
 
 import java.util.List;
 
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.*;
 
 import com.recipematcher.core.Model.Ingredient;
 import com.recipematcher.core.Service.IngredientService;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 
 @RestController
 @RequestMapping("/ingredients")
@@ -25,7 +21,22 @@ public class IngredientController {
     public List<Ingredient> getAllIngredients() {
         return ingredientService.getAllIngredients();
     }
-    
+
+    @GetMapping("/{id}")
+    public Ingredient getIngredientsById(@PathVariable Long id) {
+        return ingredientService.getIngredientById(id);
+    }
+
+    @PutMapping("/update/{id}")
+    public Ingredient updateIngredient(@PathVariable Long id, @RequestBody Ingredient ingredient) {
+        return ingredientService.updateIngredient(id, ingredient);
+    }
+
+    @DeleteMapping("/delete/{id}")
+    public void deleteIngredient(@PathVariable Long id) {
+        ingredientService.deleteIngredient(id);
+    }
+
     @PostMapping
     public Ingredient createIngredient(@RequestBody Ingredient ingredient) {
         return ingredientService.createIngredient(ingredient);

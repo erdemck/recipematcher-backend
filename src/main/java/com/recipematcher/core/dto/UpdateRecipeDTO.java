@@ -5,7 +5,7 @@ import lombok.Setter;
 import java.util.List;
 
 @Getter @Setter
-public class CreateRecipeDTO {
+public class UpdateRecipeDTO {
     private String recipeName;
     private String recipeDesc;
     private String recipeImage;

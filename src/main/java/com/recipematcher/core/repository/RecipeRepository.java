@@ -18,11 +18,12 @@ public interface RecipeRepository extends JpaRepository<Recipe, Long> {
     List<Recipe> findByRecipeIngredientsContaining(Ingredient ingredient);
 
     @Query("""
-    SELECT r FROM Recipe r 
+    SELECT r FROM Recipe r
     WHERE NOT EXISTS (
         SELECT i FROM r.recipeIngredients i 
         WHERE i.id NOT IN :ingredientIds 
     )""")
     List<Recipe> findRecipesByAllIngredientsPresent(List<Long> ingredientIds);
 
-} 
+    Recipe getRecipeById(Long id);
+}

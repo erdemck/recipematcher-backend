@@ -1,15 +1,12 @@
 package com.recipematcher.core.Controller;
 
 import com.recipematcher.core.dto.CreateRecipeDTO;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import com.recipematcher.core.dto.UpdateRecipeDTO;
+import org.springframework.web.bind.annotation.*;
 
 import com.recipematcher.core.Model.Recipe;
 import com.recipematcher.core.Service.RecipeService;
 import java.util.List;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody; 
 
 @RestController
 @RequestMapping("/recipes")
@@ -24,6 +21,21 @@ public class RecipeContoller {
     @GetMapping
     public List<Recipe> getAllRecipe(){
         return recipeService.getAllRecipes();
+    }
+
+    @GetMapping("/{id}")
+    public Recipe getRecipe(@PathVariable Long id) {
+        return recipeService.getRecipeById(id);
+    }
+
+    @PutMapping("/update/{id}")
+    public Recipe updateRecipe(@PathVariable Long id, @RequestBody UpdateRecipeDTO updateRecipeDTO) {
+        return recipeService.updateRecipe(id,updateRecipeDTO);
+    }
+
+    @DeleteMapping("/delete/{id}")
+    public void deleteRecipe(@PathVariable Long id) {
+        recipeService.deleteRecipe(id);
     }
 
     @PostMapping

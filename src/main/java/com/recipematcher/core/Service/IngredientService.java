@@ -28,7 +28,11 @@ public class IngredientService {
     }
 
     public Ingredient updateIngredient(Long id, Ingredient ingredient) {
-        return ingredientRepository.save(ingredient);
+        Ingredient existIngredient = ingredientRepository.getIngredientById(id);
+        existIngredient.setName(ingredient.getName());
+        existIngredient.setType(ingredient.getType());
+
+        return ingredientRepository.save(existIngredient);
     }
 
     public void deleteIngredient(Long id) {
@@ -38,6 +42,6 @@ public class IngredientService {
     public List<Ingredient> findAllById(List<Long> ids) {
         return ingredientRepository.findAllById(ids);
     }
-    
-    
+
+
 }

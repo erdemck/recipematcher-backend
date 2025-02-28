@@ -5,6 +5,7 @@ import com.recipematcher.core.Model.IngredientType;
 
 import java.util.List;
 
+import lombok.NonNull;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -12,7 +13,8 @@ import org.springframework.stereotype.Repository;
 public interface IngredientRepository extends JpaRepository<Ingredient, Long> {
     //Basic CRUD operations are provided by JpaRepository
 
-    List<Ingredient> findAllById(Iterable<Long> ids);
     List<Ingredient> findByName(String name);
     List<Ingredient> findByType(IngredientType type);
-} 
+
+    Ingredient getIngredientById(Long id);
+}

@@ -1,13 +1,11 @@
 package com.recipematcher.core.Service;
 
-import com.recipematcher.core.Model.Ingredient;
 import com.recipematcher.core.dto.CreateRecipeDTO;
-import com.recipematcher.core.repository.IngredientRepository;
+import com.recipematcher.core.dto.UpdateRecipeDTO;
 import org.springframework.stereotype.Service;
 import com.recipematcher.core.Model.Recipe;
 import com.recipematcher.core.repository.RecipeRepository;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -43,7 +41,13 @@ public class RecipeService {
         return recipeRepository.save(recipe);
     }
 
-    public Recipe updateRecipe(Long id, Recipe recipe) {
+    public Recipe updateRecipe(Long id, UpdateRecipeDTO updateRecipeDTO) {
+        Recipe recipe = recipeRepository.getRecipeById(id);
+        recipe.setRecipeImage(updateRecipeDTO.getRecipeImage());
+        recipe.setRecipeName(updateRecipeDTO.getRecipeName());
+        recipe.setRecipeDesc(updateRecipeDTO.getRecipeDesc());
+        recipe.setRecipeIngredients(ingredientService.findAllById(updateRecipeDTO.getIngredientIds()));
+
         return recipeRepository.save(recipe);
     }
 
