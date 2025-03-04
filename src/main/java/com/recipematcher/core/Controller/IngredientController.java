@@ -8,7 +8,7 @@ import com.recipematcher.core.Model.Ingredient;
 import com.recipematcher.core.Service.IngredientService;
 
 @RestController
-@RequestMapping("/ingredients")
+@RequestMapping("/api/ingredients")
 public class IngredientController {
     
     private final IngredientService ingredientService;
@@ -17,27 +17,27 @@ public class IngredientController {
         this.ingredientService = ingredientService;
     }
 
-    @GetMapping
+    @GetMapping("/public")
     public List<Ingredient> getAllIngredients() {
         return ingredientService.getAllIngredients();
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/public/{id}")
     public Ingredient getIngredientsById(@PathVariable Long id) {
         return ingredientService.getIngredientById(id);
     }
 
-    @PutMapping("/update/{id}")
+    @PutMapping("/auth/update/{id}")
     public Ingredient updateIngredient(@PathVariable Long id, @RequestBody Ingredient ingredient) {
         return ingredientService.updateIngredient(id, ingredient);
     }
 
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping("/auth/delete/{id}")
     public void deleteIngredient(@PathVariable Long id) {
         ingredientService.deleteIngredient(id);
     }
 
-    @PostMapping
+    @PostMapping("/auth/create")
     public Ingredient createIngredient(@RequestBody Ingredient ingredient) {
         return ingredientService.createIngredient(ingredient);
     }

@@ -9,7 +9,7 @@ import com.recipematcher.core.Service.RecipeService;
 import java.util.List;
 
 @RestController
-@RequestMapping("/recipes")
+@RequestMapping("/api/recipes")
 public class RecipeContoller {
 
     private final RecipeService recipeService;
@@ -18,27 +18,27 @@ public class RecipeContoller {
         this.recipeService = recipeService;
     }
 
-    @GetMapping
+    @GetMapping("/public")
     public List<Recipe> getAllRecipe(){
         return recipeService.getAllRecipes();
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/public/{id}")
     public Recipe getRecipe(@PathVariable Long id) {
         return recipeService.getRecipeById(id);
     }
 
-    @PutMapping("/update/{id}")
+    @PutMapping("/auth/update/{id}")
     public Recipe updateRecipe(@PathVariable Long id, @RequestBody UpdateRecipeDTO updateRecipeDTO) {
         return recipeService.updateRecipe(id,updateRecipeDTO);
     }
 
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping("/auth/delete/{id}")
     public void deleteRecipe(@PathVariable Long id) {
         recipeService.deleteRecipe(id);
     }
 
-    @PostMapping
+    @PostMapping("/auth/create")
     public Recipe createRecipe(@RequestBody CreateRecipeDTO createRecipe){
         return recipeService.createRecipe(createRecipe);
     }

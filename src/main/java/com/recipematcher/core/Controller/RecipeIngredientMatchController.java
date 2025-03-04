@@ -9,7 +9,7 @@ import com.recipematcher.core.Service.RecipeIngredientMatchService;
 import com.recipematcher.core.dto.RecipeMatchResponseDTO;
 
 @RestController
-@RequestMapping("recipeingredientmatch")
+@RequestMapping("/api/recipeingredientmatch")
 public class RecipeIngredientMatchController {
     private final RecipeIngredientMatchService recipeIngredientMatchService;
 
@@ -17,7 +17,7 @@ public class RecipeIngredientMatchController {
         this.recipeIngredientMatchService = recipeIngredientMatchService;
     }
 
-    @PostMapping
+    @PostMapping("/public")
     public List<Recipe> getMatchedRecipes(@RequestBody RecipeMatchResponseDTO recipeMatchResponseDTO){
         return recipeIngredientMatchService.getMatchedRecipes(recipeMatchResponseDTO);
     }
